@@ -1,33 +1,57 @@
 import React from 'react';
+import { API } from '../api';
+import { CommentAdd } from '../components';
 
 function Comment(props) {
-    const { messages } = props;
+    const { message } = props;
+    const [answers, setAnswers] = React.useState([]);
+    const [viewForn, setViewForn] = React.useState(false);
+
+    const handleAddMessagesToMessages = React.useCallback((value) => {
+        API.addMessageToMessage(message.id, JSON.stringify(value))
+            .then((response) => {
+                setAnswers([...answers, response.data]);
+                setViewForn(!viewForn);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [message, answers, viewForn]);
+
+    React.useEffect(() => {
+        API.getMessageToMessage(message.id)
+            .then((response) => {
+                setAnswers(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [message]);
 
     return (
         <>
-            {!!props && (
-                <article className='message post'>
+            <div className='message'>
+                <div className='message_main'>
                     <div className='info'>
-                        <span>{messages.author || ''}</span>
+                        <span>{message.author || ''}</span>
                         <span>
-                            {
-                                messages.createdAt
-                                    ? new Date( messages.createdAt ).toLocaleDateString()
-                                    : 'Без даты'
-                            }
+                            {message.createdAt
+                                ? new Date(
+                                    message.createdAt
+                                    ).toLocaleDateString()
+                                : 'Без даты'}
                         </span>
                     </div>
-                    <p>{messages.text}</p>
-                    {/* <div className='control'>
-                        <button className='btn-edit' title='Редактировать'>
-                            <i className='fas fa-edit'></i>
-                        </button>
-                        <button className='btn-delete' title='Удалить'>
-                            <i className='fas fa-trash-alt'></i>
-                        </button>
-                    </div> */}
-                </article>
-            )}
+                    <p>{message.text}</p>
+                    <div className='message_answer' onClick={() => setViewForn(!viewForn)}>Ответить</div>
+                </div>
+                <div className='answers'>
+                    <div className='answer-main'>
+                        {!!answers.length && answers.map((elem,i) => <Comment key={i} message={elem} />)}
+                    </div>
+                    {viewForn && <CommentAdd handleAddMessages={handleAddMessagesToMessages} /> }
+                </div>
+            </div>
         </>
     );
 }

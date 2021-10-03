@@ -2,27 +2,40 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Nav } from '../components';
 import { API } from '../api';
+//import socket from '../api/socket';
 
 function Posts() {
     const [posts, setPosts] = React.useState(null);
 
-    React.useEffect(() => {
+    const handleGetPosts = React.useCallback(() => {
         API.getPosts().then((response) => {
             setPosts(response.data);
         });
-    }, []);
+    },[setPosts]);
+
+    React.useEffect(() => {
+        handleGetPosts();
+        // socket.on('DELETE_POST', function (msg) {
+        //     handleGetPosts();
+        // });
+
+        // socket.on('ADD_POST', function (msg) {
+        //     handleGetPosts();
+        // });
+    }, [handleGetPosts]);
 
     const handleDelete = (e) => {
         const id = e.target.dataset.id;
         API.delete(id)
-        .then((response) => {
-            const filterPosts = posts.filter(post => post._id !== id);
-            setPosts(filterPosts);
-        })
-        .catch((error) => {
-            console.log(error);
-        });;
-    }
+            .then((response) => {
+                //const filterPosts = posts.filter((post) => post.id !== id);
+                //setPosts(filterPosts);
+                //socket.emit('DELETE_POST');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <div className='content'>
@@ -32,9 +45,9 @@ function Posts() {
             <ul>
                 {!!posts &&
                     posts.map((elem) => (
-                        <article key={elem._id}>
+                        <article key={elem.id}>
                             <h2>
-                                <Link to={`/post/${elem._id}`}>
+                                <Link to={`/post/${elem.id}`}>
                                     {elem.title}
                                 </Link>
                             </h2>
@@ -47,10 +60,15 @@ function Posts() {
                                 </span>
                                 <span>{elem.author}</span>
                             </div>
-                            <button className='btn-delete' data-id={elem._id} onClick={handleDelete} title='Удалить'>
+                            <button
+                                className='btn-delete'
+                                data-id={elem.id}
+                                onClick={handleDelete}
+                                title='Удалить'
+                            >
                                 <i
                                     className='fas fa-trash-alt'
-                                    data-id={elem._id}
+                                    data-id={elem.id}
                                 ></i>
                             </button>
                         </article>

@@ -7,12 +7,22 @@ const instanceAPI = axios.create({
             'Content-Type': 'application/json; charset=utf-8',
         },
         put: {
-            'Content-Type': 'application/json; charset=utf-8'
+            'Content-Type': 'application/json; charset=utf-8',
         },
     },
 });
 
 export const API = {
+    // Авторизация
+    async signIn(value) {
+        return await instanceAPI.post(`/api/signin`, value);
+    },
+
+    // Регистрация
+    async signUp(value) {
+        return await instanceAPI.post(`/api/signup`, value);
+    },
+
     // Получить все посты
     async getPosts() {
         return await instanceAPI.get('/api/posts');
@@ -30,12 +40,12 @@ export const API = {
 
     // Изменить пост по id
     async editPost(id, values) {
-        console.log(id, values)
+        console.log(id, values);
         return await instanceAPI.put(`/api/post/${id}`, values);
     },
 
-     // Удалить пост по id
-     async delete(id) {
+    // Удалить пост по id
+    async delete(id) {
         return await instanceAPI.delete(`/api/post/${id}`);
     },
 
@@ -44,9 +54,23 @@ export const API = {
         return await instanceAPI.get('/contacts');
     },
 
-     // Добавить комментарий
-     async addMessages(id, value) {
+    // Получить все комментарии поста
+    async getMessages(id) {
+        return await instanceAPI.get(`/api/messages/${id}`);
+    },
+
+    // Добавить комментарий
+    async addMessage(id, value) {
         return await instanceAPI.post(`/api/message/${id}`, value);
     },
 
+    // Получить все ответы на комментарий
+    async getMessageToMessage(id) {
+        return await instanceAPI.get(`/api/answers/${id}`);
+    },
+
+    // Добавить комментарий к комментарию
+    async addMessageToMessage(id, value) {
+        return await instanceAPI.post(`/api/answer/${id}`, value);
+    },
 };

@@ -1,14 +1,13 @@
 import React from 'react';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
-import { API } from '../api';
 
 function Comment(props) {
-
-    const {id} = props;
+    const { handleAddMessages } = props;
 
     const formik = useFormik({
         initialValues: {
+            author: 'testAuthor',
             text: '',
         },
         enableReinitialize: true,
@@ -18,15 +17,9 @@ function Comment(props) {
                 .max(500, 'Не более 500 символов')
                 .required('Не заполнен текст поста'),
         }),
-        onSubmit: (values) => {
-            console.log('values', JSON.stringify(values, null, 2));
-            API.addMessages(id, JSON.stringify(values))
-            .then((response) => {
-                //history.push('/posts');
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        onSubmit: (value, { resetForm }) => {
+            handleAddMessages(value);
+            resetForm();
         },
     });
 
@@ -39,7 +32,6 @@ function Comment(props) {
                         <div className='form-text'>
                             <Field
                                 as='textarea'
-                                id='text'
                                 type='text'
                                 name='text'
                             ></Field>

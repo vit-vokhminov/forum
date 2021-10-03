@@ -4,6 +4,7 @@ import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { Nav } from '../components';
 import { API } from '../api';
+import socket from '../api/socket';
 
 function AddPost() {
 
@@ -35,11 +36,12 @@ function AddPost() {
             API.addPost(JSON.stringify(values))
                 .then((response) => {
                     if (response.status === 200) {
+                        socket.emit('ADD_POST');
                         history.push("/posts");
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
+                    throw new Error('Что-то пошло не так: ', error.message );
                 });
         },
     });

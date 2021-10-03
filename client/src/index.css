@@ -4,6 +4,21 @@
     padding: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 1px solid #000;
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 body {
     padding-top: 80px;
     min-height: calc(100vh - 90px);
@@ -189,11 +204,28 @@ button.btn-edit i {
 button.btn-delete i {
 }
 
-.message.post {
+.message {
     position: relative;
-    padding-right: 80px;
-    width: calc(100% - 20px);
-    margin-left: 20px;
+    width: calc(100% - 40px);
+    margin-bottom: 10px;
+}
+
+.message_main {
+    position: relative;
+    padding-bottom: 30px;
+    padding: 10px 20px 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+.message_answer {
+    padding-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.message_answer:hover {
+    color: #00d2ff;
 }
 
 .message .info {
@@ -212,8 +244,16 @@ button.btn-delete i {
 }
 .messages {
     padding-bottom: 120px;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-end;
 }
-.message.post p {
+.message p {
     font-size: 14px;
 }
 .message_form {
@@ -259,5 +299,93 @@ button.btn-delete i {
 }
 
 .message_form .form-button {
-   margin: 0;
+    margin: 0;
+}
+
+.sign {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.form_data {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+.form_data label {
+    margin-bottom: 10px;
+}
+
+.sign .form-button {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: center;
+}
+
+.answers {
+    position: relative;
+}
+
+.btn-answer {
+    padding-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-answer:hover {
+    color: #00d2ff;
+}
+
+.answer-main {
+    border-left: 1px solid #fff;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-end;
+}
+
+.answer {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.answer span {
+    font-size: 14px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.message .message_form,
+.answer .message_form {
+    position: static;
+    padding-top: 10px;
+    margin-bottom: 30px;
+}
+.message form,
+.answer form {
+    padding: 0;
+    background: none;
+}
+
+
+.message.post {
+
 }

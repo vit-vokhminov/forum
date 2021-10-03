@@ -6,8 +6,8 @@ function Home() {
         <div className='home content'>
             <Nav />
 
-            <h1>M E R N  сайт</h1>
-            <p>Технологии Node.js Express, React, MongoDB</p>
+            <h1>P E R N  сайт</h1>
+            <p>Технологии: PostgreSQL, Express, React, Node</p>
         </div>
     );
 }

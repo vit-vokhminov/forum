@@ -18,6 +18,9 @@ function Home() {
                     <li>
                         <Link to='/contacts'>Контакты</Link>
                     </li>
+                    <li>
+                        <Link to='/auth'>Войти</Link>
+                    </li>
                 </ul>
             </nav>
         </>

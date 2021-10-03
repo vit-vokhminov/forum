@@ -1,0 +1,96 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useFormik, FormikProvider, Field, Form } from 'formik';
+import * as Yup from 'yup';
+import { AuthContext } from '../context/AuthContext';
+import { API } from '../api';
+import { useHistory } from 'react-router-dom';
+
+function SignUp() {
+    const auth = React.useContext(AuthContext);
+    const history = useHistory();
+
+    const formik = useFormik({
+        initialValues: {
+            email: 'text@email.ru',
+            login: 'test-user',
+            phone: '81234567891',
+            password: 'Qwerty123',
+            confirm: 'Qwerty123',
+        },
+        enableReinitialize: true,
+        validationSchema: Yup.object({
+            email: Yup.string()
+                .email('Укажите почту')
+                .required('Укажите почту'),
+            login: Yup.string()
+                .min(3, 'Не менее 3 символов')
+                .max(20, 'Не более 20 символов')
+                .required('Укажите логин'),
+            phone: Yup.string()
+                .matches(
+                    /^(\s)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/,
+                    'Укажите телефон'
+                ),
+            password: Yup.string()
+                .min(6, 'Не менее 6 символов')
+                .required('Не менее 6 символов'),
+            confirm: Yup.string()
+                .oneOf([Yup.ref('password'), null], 'Пароли не совпадают')
+                .required('Пароли не совпадают'),
+        }),
+        onSubmit: (values) => {
+            API.signUp(JSON.stringify(values))
+                .then((response) => {
+                    console.log(response.data)
+                    auth.login(response.data.token, response.data.userId);
+                    history.push('/');
+                })
+                .catch((error) => {
+                    throw new Error('Что-то пошло не так: ', error.message);
+                });
+        },
+    });
+
+    return (
+        <div className='content'>
+            <div className='sign'>
+                <FormikProvider value={formik}>
+                    <Form>
+                        <div className='form_data'>
+                            <label>
+                                Почта
+                                <Field type='email' name='email' />
+                            </label>
+                            <label>
+                                Логин
+                                <Field type='text' name='login' />
+                            </label>
+                            <label>
+                                Телефон
+                                <Field type='tel' name='phone' />
+                            </label>
+                            <label>
+                                Пароль
+                                <Field type='password' name='password' />
+                            </label>
+                            <label>
+                                Подтверждение пароля
+                                <Field type='password' name='confirm' />
+                            </label>
+                        </div>
+
+                        <div className='form-button'>
+                            <Link to='/signin'>Войти</Link>
+                            <button type='submit' disabled={!formik.isValid}>
+                                Регистрация
+                            </button>
+                        </div>
+                    </Form>
+                </FormikProvider>
+            </div>
+        </div>
+    );
+}
+
+export default SignUp;

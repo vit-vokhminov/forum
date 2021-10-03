@@ -25,7 +25,7 @@ function Contacts() {
             <ul className='contacts'>
                 {!!contacts &&
                     contacts.map((elem) => (
-                        <li key={elem._id}>
+                        <li key={elem.id}>
                             <Link to={{ pathname: elem.link }} target='_blank'>
                                 {elem.name}
                             </Link>

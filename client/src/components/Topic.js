@@ -18,7 +18,7 @@ function Topic(props) {
                     <h2>{post.title}</h2>
                     <p>{post.text}</p>
                     <Link
-                        to={`/edit/${post._id}`}
+                        to={`/edit/${post.id}`}
                         className='btn-edit'
                         title='Редактировать'
                     >
@@ -26,11 +26,11 @@ function Topic(props) {
                     </Link>
                     <button
                         className='btn-delete'
-                        data-id={post._id}
+                        data-id={post.id}
                         onClick={handleDelete}
                         title='Удалить'
                     >
-                        <i className='fas fa-trash-alt' data-id={post._id}></i>
+                        <i className='fas fa-trash-alt' data-id={post.id}></i>
                     </button>
                 </article>
             )}
