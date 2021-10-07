@@ -19,7 +19,7 @@ function Home() {
                         <Link to='/contacts'>Контакты</Link>
                     </li>
                     <li>
-                        <Link to='/auth'>Войти</Link>
+                        <Link to='/signin'>Войти</Link>
                     </li>
                 </ul>
             </nav>

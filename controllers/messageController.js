@@ -23,24 +23,20 @@ const addMessage = (req, res) => {
 };
 
 const getMessageToMessage = (req, res) => {
-    const { id } = req.params;
+    const { postId, messageId } = req.params;
     Message.findAll({ where: {
-        postId: id,
-        messageId: id
+        postId: postId,
+        messageId: messageId
     } })
         .then((posts) => res.status(200).json(posts))
         .catch((error) => handleError(res, error));
 };
 
 const addMessageToMessage = (req, res) => {
-    const { author, text } = req.body;
+    const { author, text, messageId } = req.body;
     const { id } = req.params;
 
-    console.log('=============================')
-    console.log('addMessageToMessage',id,author, text)
-    console.log('=============================')
-
-    Message.create({ postId: id, messageId: id, author, text })
+    Message.create({ postId: id, messageId: messageId, author, text })
         .then((post) => res.status(200).json(post))
         .catch((error) => handleError(res, error));
 };

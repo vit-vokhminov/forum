@@ -12,7 +12,7 @@ router.get('/messages/:id', getMessages);
 // Добавить комментарий
 router.post('/message/:id', addMessage);
 // Получить все ответы на комментарий
-router.get('/answers/:id', getMessageToMessage);
+router.get('/answers/:postId/:messageId', getMessageToMessage);
 // Добавить комментарий
 router.post('/answer/:id', addMessageToMessage);
 

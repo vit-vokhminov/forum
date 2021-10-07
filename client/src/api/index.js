@@ -65,8 +65,8 @@ export const API = {
     },
 
     // Получить все ответы на комментарий
-    async getMessageToMessage(id) {
-        return await instanceAPI.get(`/api/answers/${id}`);
+    async getMessageToMessage(postId, messageId) {
+        return await instanceAPI.get(`/api/answers/${postId}/${messageId}`);
     },
 
     // Добавить комментарий к комментарию
