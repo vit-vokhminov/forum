@@ -11,38 +11,32 @@ import {
     Contacts,
     NotFound,
 } from './pages';
-import { useAuth } from './hooks/auth.hook';
-import { AuthContext } from './context/AuthContext';
+import { useDispatch } from 'react-redux';
+import { fetchCheckAuth } from './redux/store/userReducer';
 
 function App() {
-    const { token, login, logout, userId } = useAuth();
-    const isAuthenticated = !!token;
+
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(fetchCheckAuth());
+    }, [dispatch])
 
     return (
-        <AuthContext.Provider
-            value={{
-                token,
-                login,
-                logout,
-                userId,
-                isAuthenticated,
-            }}
-        >
-            <div className='App'>
-                <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route path='/signin' component={SignIn} />
-                    <Route path='/signup' component={SignUp} />
-                    <Route path='/posts' component={Posts} />
-                    <Route path='/post/:id' component={Post} />
-                    <Route path='/add-post' component={AddPost} />
-                    <Route path='/edit/:id' component={EditPost} />
-                    <Route path='/contacts' component={Contacts} />
+        <div className='App'>
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/signin' component={SignIn} />
+                <Route path='/signup' component={SignUp} />
+                <Route path='/posts' component={Posts} />
+                <Route path='/post/:id' component={Post} />
+                <Route path='/add-post' component={AddPost} />
+                <Route path='/edit/:id' component={EditPost} />
+                <Route path='/contacts' component={Contacts} />
 
-                    <Route component={NotFound} />
-                </Switch>
-            </div>
-        </AuthContext.Provider>
+                <Route component={NotFound} />
+            </Switch>
+        </div>
     );
 }
 

@@ -1,20 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Nav } from '../components';
-import { API } from '../api';
+
+import { useSelector } from 'react-redux';
 
 function Contacts() {
-    const [contacts, setContacts] = React.useState(null);
-
-    React.useEffect(() => {
-        API.getContacts().then((response) => {
-            setContacts(response.data);
-        });
-    }, []);
-
-    // React.useEffect(() => {
-    //     console.log(contacts);
-    // }, [contacts]);
+    const user = useSelector((state) => state.userReducer.user);
 
     return (
         <div className='content'>
@@ -22,16 +12,19 @@ function Contacts() {
 
             <h1>Контакты:</h1>
 
-            <ul className='contacts'>
-                {!!contacts &&
-                    contacts.map((elem) => (
-                        <li key={elem.id}>
-                            <Link to={{ pathname: elem.link }} target='_blank'>
-                                {elem.name}
-                            </Link>
-                        </li>
-                    ))}
-            </ul>
+            {user && (
+                <ul className='contacts'>
+                    <li>
+                        Email: <i>{user.email}</i>{user.isActivated ? <span>&#10004;</span> : <span>не подтверждена</span>}
+                    </li>
+                    <li>
+                        Login: <i>{user.login}</i>
+                    </li>
+                    <li>
+                        Phone: <i>{user.phone}</i>
+                    </li>
+                </ul>
+            )}
         </div>
     );
 }

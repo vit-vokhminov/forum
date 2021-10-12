@@ -13,15 +13,6 @@ const instanceAPI = axios.create({
 });
 
 export const API = {
-    // Авторизация
-    async signIn(value) {
-        return await instanceAPI.post(`/api/signin`, value);
-    },
-
-    // Регистрация
-    async signUp(value) {
-        return await instanceAPI.post(`/api/signup`, value);
-    },
 
     // Получить все посты
     async getPosts() {

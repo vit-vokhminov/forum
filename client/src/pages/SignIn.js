@@ -2,14 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
-import { AuthContext } from '../context/AuthContext';
-import { API } from '../api';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchLogin } from '../redux/store/userReducer';
+import { Nav, IsLoading, ServerMessage } from '../components';
 
 function SignIn() {
-
-    const auth = React.useContext(AuthContext);
-    const history = useHistory();
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -26,20 +24,14 @@ function SignIn() {
                 .required('Не менее 8 символов'),
         }),
         onSubmit: (values) => {
-            API.signIn(JSON.stringify(values))
-                .then((response) => {
-                    console.log(response.data)
-                    auth.login(response.data.token, response.data.userId);
-                    history.push('/');
-                })
-                .catch((error) => {
-                    throw new Error('Что-то пошло не так: ', error.message);
-                });
+            dispatch(fetchLogin(values));
         },
     });
 
     return (
         <div className='content'>
+            <Nav />
+            
             <div className='sign'>
                 <FormikProvider value={formik}>
                     <Form>
@@ -62,6 +54,9 @@ function SignIn() {
                         </div>
                     </Form>
                 </FormikProvider>
+
+                <IsLoading />
+                <ServerMessage />
             </div>
         </div>
     );

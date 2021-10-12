@@ -1,7 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLogout } from '../redux/store/userReducer';
 
 function Home() {
+    const user = useSelector((state) => state.userReducer.user);
+    const dispatch = useDispatch();
+
+    const handleExit = () => {
+        const conf = window.confirm(`Тебе здесь не место?`);
+        if (conf) {
+            dispatch(fetchLogout());
+        }
+    };
+
     return (
         <>
             <nav>
@@ -15,12 +27,20 @@ function Home() {
                     <li>
                         <Link to='/add-post'>Создать Пост</Link>
                     </li>
-                    <li>
-                        <Link to='/contacts'>Контакты</Link>
-                    </li>
-                    <li>
-                        <Link to='/signin'>Войти</Link>
-                    </li>
+                    {user && (
+                        <li>
+                            <Link to='/contacts'>{user.login}</Link>
+                        </li>
+                    )}
+                    {user ? (
+                        <li onClick={() => handleExit()}>
+                            <span>Выйти</span>
+                        </li>
+                    ) : (
+                        <li>
+                            <Link to='/signin'>Войти</Link>
+                        </li>
+                    )}
                 </ul>
             </nav>
         </>
