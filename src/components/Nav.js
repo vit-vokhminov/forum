@@ -24,18 +24,18 @@ function Home() {
                     <li>
                         <Link to='/posts'>Обсуждение</Link>
                     </li>
-                    <li>
-                        <Link to='/add-post'>Создать Пост</Link>
-                    </li>
-                    {user && (
-                        <li>
-                            <Link to='/contacts'>{user.login}</Link>
-                        </li>
-                    )}
                     {user ? (
-                        <li onClick={() => handleExit()}>
-                            <span>Выйти</span>
-                        </li>
+                        <>
+                            <li>
+                                <Link to='/add-post'>Создать Пост</Link>
+                            </li>
+                            <li>
+                                <Link to='/contacts'>{user.login}</Link>
+                            </li>
+                            <li onClick={() => handleExit()}>
+                                <span>Выйти</span>
+                            </li>
+                        </>
                     ) : (
                         <li>
                             <Link to='/signin'>Войти</Link>

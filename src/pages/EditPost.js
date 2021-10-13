@@ -20,7 +20,6 @@ function AddPost() {
     const formik = useFormik({
         initialValues: {
             title: editPost?.title || '',
-            author: editPost?.author || '',
             text: editPost?.text || '',
         },
         enableReinitialize: true,
@@ -29,10 +28,6 @@ function AddPost() {
                 .min(3, 'Не менее 3 символов')
                 .max(150, 'Не более 150 символов')
                 .required('Не указан заголовок'),
-            author: Yup.string()
-                .min(3, 'Не менее 3 символов')
-                .max(20, 'Не более 20 символов')
-                .required('Не указан автор'),
             text: Yup.string()
                 .min(3, 'Не менее 3 символов')
                 .max(500, 'Не более 500 символов')
@@ -65,14 +60,6 @@ function AddPost() {
                                     type='text'
                                     id='title'
                                     name='title'
-                                />
-                            </label>
-                            <label>
-                                Автор
-                                <Field
-                                    type='text'
-                                    id='author'
-                                    name='author'
                                 />
                             </label>
                         </div>

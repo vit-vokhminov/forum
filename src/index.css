@@ -72,6 +72,38 @@ a {
     color: #fff;
 }
 
+.main_content {}
+.main_content h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.technologies {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+}
+.technologies_left, .technologies_right {
+    width: 50%;
+    padding: 0 20px;
+    outline: 1px solid red;
+}
+
+.technologies h2 {
+    margin-bottom: 10px;
+}
+
 article {
     background-color: rgba(0, 0, 0, 0.4);
     padding: 10px 20px;
@@ -79,8 +111,15 @@ article {
 }
 
 .info {
-    display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    margin-bottom: 4px;
+}
+.info span {
+    font-size: 12px;
+    margin-right: 10px;
+}
+.info span:first-of-type {
+    font-size: 18px;
 }
 
 h2 a {
@@ -251,10 +290,12 @@ button.btn-delete i {
     margin-bottom: 10px;
 }
 .message .info span {
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 10px;
 }
-
+.message .info span:first-of-type {
+    font-size: 16px;
+}
 .control {
     position: absolute;
     top: 10px;

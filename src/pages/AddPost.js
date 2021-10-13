@@ -5,15 +5,16 @@ import * as Yup from 'yup';
 import { Nav } from '../components';
 import { API } from '../api';
 import socket from '../api/socket';
+import { useSelector } from 'react-redux';
 
 function AddPost() {
 
+    const user = useSelector((state) => state.userReducer.user);
     const history = useHistory();
 
     const formik = useFormik({
         initialValues: {
             title: '',
-            author: '',
             text: '',
         },
         validationSchema: Yup.object({
@@ -21,10 +22,6 @@ function AddPost() {
                 .min(3, 'Не менее 3 символов')
                 .max(150, 'Не более 150 символов')
                 .required('Не указан заголовок'),
-            author: Yup.string()
-                .min(3, 'Не менее 3 символов')
-                .max(20, 'Не более 20 символов')
-                .required('Не указан автор'),
             text: Yup.string()
                 .min(3, 'Не менее 3 символов')
                 .max(500, 'Не более 500 символов')
@@ -32,7 +29,7 @@ function AddPost() {
         }),
         onSubmit: (values) => {
             //console.log('values', JSON.stringify(values, null, 2));
-
+            values.author = user?.login;
             API.addPost(JSON.stringify(values))
                 .then((response) => {
                     if (response.status === 200) {
@@ -56,10 +53,6 @@ function AddPost() {
                         <label>
                             Заголовок
                             <Field type='text' id='title' name='title' />
-                        </label>
-                        <label>
-                            Автор
-                            <Field type='text' id='author' name='author' />
                         </label>
                     </div>
                     <div className='form-text'>

@@ -5,9 +5,11 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { fetchLogin } from '../redux/store/userReducer';
 import { Nav, IsLoading, ServerMessage } from '../components';
+import { useHistory } from 'react-router-dom';
 
 function SignIn() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const formik = useFormik({
         initialValues: {
@@ -24,14 +26,14 @@ function SignIn() {
                 .required('Не менее 8 символов'),
         }),
         onSubmit: (values) => {
-            dispatch(fetchLogin(values));
+            dispatch(fetchLogin({ values, history }));
         },
     });
 
     return (
         <div className='content'>
             <Nav />
-            
+
             <div className='sign'>
                 <FormikProvider value={formik}>
                     <Form>

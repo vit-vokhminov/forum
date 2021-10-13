@@ -9,19 +9,19 @@ import {
     setServerMessage,
     CHECK_AUTH,
 } from '../store/userReducer';
-//import { push } from 'connected-react-router';
 import { API_AUTH } from '../../api/auth';
 
-function* fetchLogin(values) {
+function* fetchLogin(props) {
+    const {values, history} = props.payload;
     yield put(setLoading(true));
     try {
-        const response = yield call(API_AUTH.login, values.payload);
+        const response = yield call(API_AUTH.login, values);
         if (response.status === 200) {
             yield localStorage.setItem('token', response.data.accessToken);
             yield put(setUser(response.data.user));
             yield put(setUserAuth(true));
             yield put(setLoading(false));
-            //yield put(push('/'));
+            yield history.push("/");
         }
     } catch (e) {
         yield put(setLoading(false));
@@ -29,18 +29,22 @@ function* fetchLogin(values) {
     }
 }
 
-function* fetchRegistration(values) {
+function* fetchRegistration(props) {
+    const {values, history} = props.payload;
     yield put(setLoading(true));
     try {
-        const response = yield call(API_AUTH.registration, values.payload);
-        console.log('response',response)
+        const response = yield call(API_AUTH.registration, values);
+
         if (response.status === 200) {
             yield localStorage.setItem('token', response.data.accessToken);
             yield put(setUser(response.data.user));
             yield put(setUserAuth(true));
             yield put(setLoading(false));
-            //yield history.push("/");
-            yield put(setServerMessage('На ваш email отправлено письмо для подтверждения почты'));
+            yield put(
+                setServerMessage(
+                    'На ваш email отправлено письмо для подтверждения почты'
+                )
+            );
 
             yield new Promise((resolve) =>
                 setTimeout(() => {
@@ -48,8 +52,9 @@ function* fetchRegistration(values) {
                     resolve();
                 }, 3000)
             );
+            yield history.location.pathname === "/signup" && history.push("/");
         }
-    } catch (e) {console.log('ERROR')
+    } catch (e) {
         yield put(setLoading(false));
         yield put(setServerMessage(e.response?.data?.message));
     }
@@ -77,7 +82,6 @@ function* fetchCheckAuth() {
     yield put(setLoading(true));
     try {
         const response = yield call(API_AUTH.checkAuth);
-        console.log('function* fetchCheckAuth',response)
         if (response.status === 200) {
             yield localStorage.setItem('token', response.data.accessToken);
             yield put(setUser(response.data.user));

@@ -3,7 +3,7 @@ import { Nav, Topic, Comment, CommentAdd } from '../components';
 import { API } from '../api';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-//import socket from '../api/socket';
+import socket from '../api/socket';
 
 function Post() {
     const [post, setPost] = React.useState(null);
@@ -13,11 +13,10 @@ function Post() {
 
     const handleAddMessages = React.useCallback(
         (value) => {
-            console.log('value', value);
             API.addMessage(id, JSON.stringify(value))
                 .then((response) => {
                     setMessages([...messages, response.data]);
-                    //socket.emit('NEW_MESSAGE');
+                    socket.emit('NEW_MESSAGE');
                 })
                 .catch((error) => {
                     console.log(error);
@@ -37,9 +36,18 @@ function Post() {
             setPost(response.data);
             handleGetMessages();
         });
-        // socket.on('NEW_MESSAGE', function (msg) {
-        //     handleGetMessages();
-        // });
+        socket.on('NEW_MESSAGE', function (msg) {
+            handleGetMessages();
+        });
+        socket.on('DELETE_POST', function (postId) {
+            if (postId === id) {
+                history.push('/posts');
+            }
+        });
+        return () => {
+            socket.off('NEW_MESSAGE');
+            socket.off('DELETE_POST');
+        };
     }, [id, handleGetMessages]);
 
     const handleDelete = () => {
@@ -49,7 +57,7 @@ function Post() {
         if (conf) {
             API.delete(id)
                 .then((response) => {
-                    //socket.emit('DELETE_POST');
+                    socket.emit('DELETE_POST');
                     history.push('/posts');
                 })
                 .catch((error) => {

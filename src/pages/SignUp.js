@@ -5,9 +5,11 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { fetchRegistration } from '../redux/store/userReducer';
 import { Nav, IsLoading, ServerMessage } from '../components';
+import { useHistory } from 'react-router-dom';
 
 function SignUp() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const formik = useFormik({
         initialValues: {
@@ -38,7 +40,7 @@ function SignUp() {
                 .required('Пароли не совпадают'),
         }),
         onSubmit: (values) => {
-            dispatch(fetchRegistration(values));
+            dispatch(fetchRegistration({ values, history }));
         },
     });
 
