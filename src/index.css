@@ -96,12 +96,19 @@ a {
 }
 .technologies_left, .technologies_right {
     width: 50%;
-    padding: 0 20px;
-    outline: 1px solid red;
+    padding: 10px 15px;
+    border: 1px solid #fff;
+}
+.technologies_right {
+    border-left: none;
 }
 
 .technologies h2 {
+    font-size: 20px;
     margin-bottom: 10px;
+}
+.technologies li {
+    font-size: 18px;
 }
 
 article {
