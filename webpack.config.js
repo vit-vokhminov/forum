@@ -135,6 +135,7 @@ module.exports = {
     // автообновление
     devServer: {
         port: 3000,
+        historyApiFallback: true,
         hot: isDev, // обновляет только то что изменилось, мгновенное реагирование
     },
     plugins: plugins(),
