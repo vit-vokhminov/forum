@@ -2,9 +2,10 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
-import { Nav } from '../components';
-import { API } from '../api';
-import socket from '../api/socket';
+
+import { Nav } from 'Components';
+import { API } from 'Api';
+import socket from 'Api/socket';
 import { useSelector } from 'react-redux';
 
 function AddPost() {

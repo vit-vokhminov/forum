@@ -2,8 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
-import { Nav } from '../components';
-import { API } from '../api';
+
+import { Nav } from 'Components';
+import { API } from 'Api';
 import { useParams } from 'react-router-dom';
 
 function AddPost() {

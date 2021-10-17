@@ -127,6 +127,8 @@ module.exports = {
         alias: {
             Api: path.resolve(__dirname, 'src/api'),
             Components: path.resolve(__dirname, 'src/components'),
+            Pages: path.resolve(__dirname, 'src/pages'),
+            ReduxUserReducer: path.resolve(__dirname, 'src/redux/store'),
         },
     },
     optimization: optimization(),

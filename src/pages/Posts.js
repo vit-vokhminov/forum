@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Nav } from '../components';
-import { API } from '../api';
 import { useSelector } from 'react-redux';
-import socket from '../api/socket';
+
+import { Nav } from 'Components';
+import { API } from 'Api';
+import socket from 'Api/socket';
 
 function Posts() {
     const user = useSelector((state) => state.userReducer.user);

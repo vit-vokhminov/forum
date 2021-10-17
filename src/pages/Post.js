@@ -1,9 +1,9 @@
 import React from 'react';
-import { Nav, Topic, Comment, CommentAdd } from '../components';
-import { API } from '../api';
-import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import socket from '../api/socket';
+import { Nav, Topic, Comment, CommentAdd } from 'Components';
+import { useParams, useHistory } from 'react-router-dom';
+
+import { API } from 'Api';
+import socket from 'Api/socket';
 
 function Post() {
     const [post, setPost] = React.useState(null);

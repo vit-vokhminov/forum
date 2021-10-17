@@ -1,7 +1,8 @@
 import React from 'react';
-import { API } from '../api';
-import { CommentAdd } from '../components';
 import { useParams } from 'react-router-dom';
+
+import { API } from 'Api';
+import { CommentAdd } from 'Components';
 
 function Comment(props) {
     const { message } = props;
@@ -43,7 +44,9 @@ function Comment(props) {
                         <span>{message.author || ''}</span>
                         <span>
                             {message.createdAt
-                                ? new Date(message.createdAt).toLocaleDateString()
+                                ? new Date(
+                                      message.createdAt
+                                  ).toLocaleDateString()
                                 : 'Без даты'}
                         </span>
                     </div>

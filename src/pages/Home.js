@@ -1,5 +1,6 @@
 import React from 'react';
-import { Nav } from '../components';
+
+import { Nav } from 'Components';
 
 function Home() {
     return (

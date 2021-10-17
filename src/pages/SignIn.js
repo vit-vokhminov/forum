@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
+
 import { fetchLogin } from '../redux/store/userReducer';
-import { Nav, IsLoading, ServerMessage } from '../components';
-import { useHistory } from 'react-router-dom';
+import { Nav, Loading, ServerMessage } from 'Components';
 
 function SignIn() {
     const dispatch = useDispatch();
@@ -57,7 +57,7 @@ function SignIn() {
                     </Form>
                 </FormikProvider>
 
-                <IsLoading />
+                <Loading />
                 <ServerMessage />
             </div>
         </div>

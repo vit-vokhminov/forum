@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import {
     Home,
     SignIn,
@@ -10,8 +12,8 @@ import {
     EditPost,
     Contacts,
     NotFound,
-} from './pages';
-import { useDispatch } from 'react-redux';
+    PrivateRoute,
+} from './Pages';
 import { fetchCheckAuth } from './redux/store/userReducer';
 
 function App() {
@@ -32,7 +34,8 @@ function App() {
                 <Route path='/post/:id' component={Post} />
                 <Route path='/add-post' component={AddPost} />
                 <Route path='/edit/:id' component={EditPost} />
-                <Route path='/contacts' component={Contacts} />
+
+                <PrivateRoute path="/contacts" component={Contacts} />
 
                 <Route component={NotFound} />
             </Switch>
