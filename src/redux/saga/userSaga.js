@@ -9,7 +9,7 @@ import {
     setServerMessage,
     CHECK_AUTH,
 } from '../store/userReducer';
-import { API_AUTH } from '../../api/auth';
+import { API_AUTH } from 'Api/auth';
 
 function* fetchLogin(props) {
     const {values, history} = props.payload;

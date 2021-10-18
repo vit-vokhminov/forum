@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -95,6 +96,7 @@ const plugins = () => {
         new MiniCssExtractPlugin({
             filename: filename('css'),
         }),
+        new Dotenv()
     ];
 
     return base;

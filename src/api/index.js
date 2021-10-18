@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instanceAPI = axios.create({
-    baseURL: `http://localhost:5000/`,
+    baseURL: `${process.env.API_URL}`,
     headers: {
         post: {
             'Content-Type': 'application/json; charset=utf-8',

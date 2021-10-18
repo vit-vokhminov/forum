@@ -9,7 +9,12 @@ const errorMiddleware = require('./middlewares/error-middleware');
 
 const app = express();
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+    cors: {
+        origin: process.env.CLIENT_URL,
+        methods: ['GET', 'POST'],
+    },
+});
 
 const PORT = process.env.PORT || 5000;
 
