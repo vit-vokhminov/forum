@@ -2,13 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { Nav } from 'Components';
 import { API } from 'Api';
 import socket from 'Api/socket';
 
+import { PostType } from 'Types/ForumTypes';
+import { RootState } from 'ReduxStore/userReducer';
+
 function Posts() {
-    const user = useSelector((state) => state.userReducer.user);
-    const [posts, setPosts] = React.useState(null);
+    const user = useSelector((state: RootState) => state.userReducer.user);
+    const [posts, setPosts] = React.useState<PostType[] | null>(null);
 
     const handleGetPosts = React.useCallback(() => {
         API.getPosts().then((response) => {
@@ -46,11 +48,10 @@ function Posts() {
                     console.log(error);
                 });
         }
-    });
+    }, []);
 
     return (
         <div className='content'>
-            <Nav />
 
             <h1>Темы:</h1>
             <ul>

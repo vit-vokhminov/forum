@@ -1,13 +1,10 @@
 import React from 'react';
 
-import { Nav } from 'Components';
-
 function NotFound() {
     return (
         <div className='content error'>
-            <Nav />
 
-            <h1 class='error-code'>404</h1>
+            <h1 className='error-code'>404</h1>
             <p>Что-то куда то не туда...</p>
 
         </div>

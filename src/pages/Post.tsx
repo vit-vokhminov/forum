@@ -1,18 +1,22 @@
 import React from 'react';
-import { Nav, Topic, Comment, CommentAdd } from 'Components';
+import { Topic, Comment, CommentAdd } from 'Components';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { API } from 'Api';
 import socket from 'Api/socket';
 
+import { PostType, MessageType, IdParams } from 'Types/ForumTypes';
+import { AddMessageValueType } from 'Types/ApiForumTypes';
+import { RouteComponentProps } from 'react-router-dom';
+
 function Post() {
-    const [post, setPost] = React.useState(null);
-    const [messages, setMessages] = React.useState([]);
-    const { id } = useParams();
-    const history = useHistory();
+    const [post, setPost] = React.useState<PostType | null>(null);
+    const [messages, setMessages] = React.useState<MessageType[]>([]);
+    const { id } = useParams<IdParams>();
+    const history = useHistory<RouteComponentProps['history']>();
 
     const handleAddMessages = React.useCallback(
-        (value) => {
+        (value: AddMessageValueType) => {
             API.addMessage(id, JSON.stringify(value))
                 .then((response) => {
                     setMessages([...messages, response.data]);
@@ -36,10 +40,10 @@ function Post() {
             setPost(response.data);
             handleGetMessages();
         });
-        socket.on('NEW_MESSAGE', function (msg) {
+        socket.on('NEW_MESSAGE', function () {
             handleGetMessages();
         });
-        socket.on('DELETE_POST', function (postId) {
+        socket.on('DELETE_POST', function (postId: string) {
             if (postId === id) {
                 history.push('/posts');
             }
@@ -51,7 +55,7 @@ function Post() {
     }, [id, handleGetMessages]);
 
     const handleDelete = () => {
-        const conf = window.confirm(
+        const conf: boolean = window.confirm(
             `Серьёзно? Ты хочешь удалить этот прекрасный пост?`
         );
         if (conf) {
@@ -68,7 +72,6 @@ function Post() {
 
     return (
         <div className='content'>
-            <Nav />
 
             <Topic post={post} handleDelete={handleDelete} />
 

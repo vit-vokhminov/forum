@@ -125,12 +125,14 @@ module.exports = {
     resolve: {
         // говорим webpack какие расширения нужно понимать по умолчанию и не указывать их при import файлов
         extensions: ['.tsx', '.ts', '.js', '.jsx'],
+        mainFields: ['browser', 'module', 'main'],
         // переменные для указания путей
         alias: {
             Api: path.resolve(__dirname, 'src/api'),
             Components: path.resolve(__dirname, 'src/components'),
             Pages: path.resolve(__dirname, 'src/pages'),
-            ReduxUserReducer: path.resolve(__dirname, 'src/redux/store'),
+            ReduxStore: path.resolve(__dirname, 'src/redux/store'),
+            Types: path.resolve(__dirname, 'src/types'),
         },
     },
     optimization: optimization(),

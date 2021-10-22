@@ -1,4 +1,10 @@
 import axios from 'axios';
+import {
+    AddPostType,
+    AddPostResponseType,
+    EditPostType,
+    AddMessageValueType,
+} from 'Types/ApiForumTypes';
 
 const instanceAPI = axios.create({
     baseURL: `${process.env.API_URL}`,
@@ -13,30 +19,28 @@ const instanceAPI = axios.create({
 });
 
 export const API = {
-
     // Получить все посты
     async getPosts() {
         return await instanceAPI.get('/api/posts');
     },
 
     // Получить пост по id
-    async getPost(id) {
+    async getPost(id: string) {
         return await instanceAPI.get(`/api/post/${id}`);
     },
 
     // Создать новый пост
-    async addPost(values) {
+    async addPost(values: AddPostType): Promise<AddPostResponseType> {
         return await instanceAPI.post('/api/post/', values);
     },
 
     // Изменить пост по id
-    async editPost(id, values) {
-        console.log(id, values);
+    async editPost(id: string, values: EditPostType) {
         return await instanceAPI.put(`/api/post/${id}`, values);
     },
 
     // Удалить пост по id
-    async delete(id) {
+    async delete(id: string) {
         return await instanceAPI.delete(`/api/post/${id}`);
     },
 
@@ -46,22 +50,22 @@ export const API = {
     },
 
     // Получить все комментарии поста
-    async getMessages(id) {
+    async getMessages(id: string) {
         return await instanceAPI.get(`/api/messages/${id}`);
     },
 
     // Добавить комментарий
-    async addMessage(id, value) {
+    async addMessage(id: string, value: AddMessageValueType) {
         return await instanceAPI.post(`/api/message/${id}`, value);
     },
 
     // Получить все ответы на комментарий
-    async getMessageToMessage(postId, messageId) {
+    async getMessageToMessage(postId: string, messageId: string) {
         return await instanceAPI.get(`/api/answers/${postId}/${messageId}`);
     },
 
     // Добавить комментарий к комментарию
-    async addMessageToMessage(id, value) {
+    async addMessageToMessage(id: string, value: AddMessageValueType) {
         return await instanceAPI.post(`/api/answer/${id}`, value);
     },
 };

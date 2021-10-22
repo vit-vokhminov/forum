@@ -5,11 +5,13 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 
 import { fetchRegistration } from '../redux/store/userReducer';
-import { Nav, Loading, ServerMessage } from 'Components';
+import { Loading, ServerMessage } from 'Components';
+
+import { RouteComponentProps } from 'react-router-dom';
 
 function SignUp() {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useHistory<RouteComponentProps['history']>();
 
     const formik = useFormik({
         initialValues: {
@@ -46,7 +48,6 @@ function SignUp() {
 
     return (
         <div className='content'>
-            <Nav />
 
             <div className='sign'>
                 <FormikProvider value={formik}>

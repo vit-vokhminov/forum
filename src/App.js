@@ -13,29 +13,31 @@ import {
     Contacts,
     NotFound,
     PrivateRoute,
-} from './Pages';
-import { fetchCheckAuth } from './redux/store/userReducer';
+} from 'Pages/';
+import { Nav } from 'Components';
+import { fetchCheckAuth } from 'ReduxStore/userReducer';
 
 function App() {
-
     const dispatch = useDispatch();
 
     React.useEffect(() => {
         dispatch(fetchCheckAuth());
-    }, [dispatch])
+    }, [dispatch]);
 
     return (
         <div className='App'>
+            <Nav />
+
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/signup' component={SignUp} />
                 <Route path='/posts' component={Posts} />
                 <Route path='/post/:id' component={Post} />
-                <Route path='/add-post' component={AddPost} />
-                <Route path='/edit/:id' component={EditPost} />
 
-                <PrivateRoute path="/contacts" component={Contacts} />
+                <PrivateRoute path='/add-post' component={AddPost} />
+                <PrivateRoute path='/edit/:id' component={EditPost} />
+                <PrivateRoute path='/contacts' component={Contacts} />
 
                 <Route component={NotFound} />
             </Switch>

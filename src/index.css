@@ -20,8 +20,7 @@ select:-webkit-autofill:focus {
 }
 
 body {
-    padding-top: 80px;
-    min-height: calc(100vh - 90px);
+    min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     background: linear-gradient(to bottom, #00d2ff, #928dab);
@@ -35,14 +34,15 @@ h1 {
 }
 
 nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1;
     height: 80px;
     display: flex;
     justify-content: flex-end;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #013e4c;
 }
 
 nav ul {
@@ -212,20 +212,23 @@ textarea {
 }
 
 .content {
-    min-height: calc(100vh - 80px);
+    padding-top: 80px;
 }
 
 .home,
 .error {
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-    background: linear-gradient(to bottom, #00d2ff, #928dab);
     color: #fff;
-    padding-top: 0;
+    padding-top: 200px;
 }
 
 .error h1 {
@@ -454,4 +457,18 @@ button.btn-delete i {
 
 .message.post {
 
+}
+
+.person {
+    padding: 12px;
+    background-color: rgb(81 88 107);
+}
+
+.person_messages.messages {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
 }

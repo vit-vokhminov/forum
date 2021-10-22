@@ -2,12 +2,26 @@ import React from 'react';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
 
-function Comment(props) {
+import { useSelector } from 'react-redux';
+
+import {RootState} from 'ReduxStore/userReducer';
+
+type FormValueType = {
+    author: string,
+    text: string,
+};
+type HandleAddMessagesType = {
+    handleAddMessages: (arg: FormValueType) => void,
+};
+
+function CommentAdd(props: HandleAddMessagesType) {
     const { handleAddMessages } = props;
+
+    const user = useSelector((state: RootState) => state.userReducer.user);
 
     const formik = useFormik({
         initialValues: {
-            author: 'testAuthor',
+            author: user?.login,
             text: '',
         },
         enableReinitialize: true,
@@ -51,4 +65,4 @@ function Comment(props) {
     );
 }
 
-export default Comment;
+export default CommentAdd;

@@ -3,20 +3,22 @@ import { useHistory } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { Nav } from 'Components';
 import { API } from 'Api';
 import { useParams } from 'react-router-dom';
 
+import { PostType, IdParams } from 'Type/ForumTypes';
+import { RouteComponentProps } from 'react-router-dom';
+
 function AddPost() {
-    const [editPost, setEditPost] = React.useState({});
-    const history = useHistory();
-    const linkId = useParams().id;
+    const [editPost, setEditPost] = React.useState<PostType>({});
+    const history = useHistory<RouteComponentProps['history']>();
+    const { id } = useParams<IdParams>();
 
     React.useEffect(() => {
-        API.getPost(linkId).then((response) => {
+        API.getPost(id).then((response) => {
             setEditPost(response.data);
         });
-    }, [linkId]);
+    }, [id]);
 
     const formik = useFormik({
         initialValues: {
@@ -35,7 +37,7 @@ function AddPost() {
                 .required('Не заполнен текст поста'),
         }),
         onSubmit: (values) => {
-            API.editPost(linkId, JSON.stringify(values))
+            API.editPost(id, JSON.stringify(values))
                 .then((response) => {
                     if (response.status === 200) {
                         history.push('/posts');
@@ -49,7 +51,6 @@ function AddPost() {
 
     return (
         <div className='content'>
-            <Nav />
 
             {!!editPost && (
                 <FormikProvider value={formik}>
@@ -57,11 +58,7 @@ function AddPost() {
                         <div className='form-info'>
                             <label>
                                 Заголовок
-                                <Field
-                                    type='text'
-                                    id='title'
-                                    name='title'
-                                />
+                                <Field type='text' id='title' name='title' />
                             </label>
                         </div>
                         <div className='form-text'>

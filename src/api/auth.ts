@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TypeLogin, TypeRegistration } from 'Types/ApiAuthTypes';
 
 const instanceAPI = axios.create({
     baseURL: `${process.env.API_URL}/api/`,
@@ -38,12 +39,12 @@ instanceAPI.interceptors.response.use(
 
 export const API_AUTH = {
     // Авторизация
-    async login(values) {
+    async login(values: TypeLogin) {
         return await instanceAPI.post('/login', values);
     },
 
     // Регистрация
-    async registration(values) {
+    async registration(values: TypeRegistration) {
         return await instanceAPI.post('/registration', values);
     },
 

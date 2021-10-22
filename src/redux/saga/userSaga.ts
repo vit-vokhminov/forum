@@ -11,7 +11,9 @@ import {
 } from '../store/userReducer';
 import { API_AUTH } from 'Api/auth';
 
-function* fetchLogin(props) {
+import { ActionType, SignInPayloadType, SignUpPayloadType } from 'Type/reduxUserReducerTypes';
+
+function* fetchLogin(props: ActionType<SignInPayloadType>) {
     const {values, history} = props.payload;
     yield put(setLoading(true));
     try {
@@ -29,7 +31,7 @@ function* fetchLogin(props) {
     }
 }
 
-function* fetchRegistration(props) {
+function* fetchRegistration(props: ActionType<SignUpPayloadType>) {
     const {values, history} = props.payload;
     yield put(setLoading(true));
     try {
@@ -79,7 +81,6 @@ function* fetchLogout() {
 }
 
 function* fetchCheckAuth() {
-    yield put(setLoading(true));
     try {
         const response = yield call(API_AUTH.checkAuth);
         if (response.status === 200) {

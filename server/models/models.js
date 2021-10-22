@@ -47,5 +47,5 @@ module.exports = {
     UserModel,
     TokenModel,
     Post,
-    Message
+    Message,
 };

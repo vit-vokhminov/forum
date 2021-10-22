@@ -4,12 +4,14 @@ import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 
-import { fetchLogin } from '../redux/store/userReducer';
-import { Nav, Loading, ServerMessage } from 'Components';
+import { fetchLogin } from 'ReduxStore/userReducer';
+import { Loading, ServerMessage } from 'Components';
+
+import { RouteComponentProps } from 'react-router-dom';
 
 function SignIn() {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useHistory<RouteComponentProps['history']>();
 
     const formik = useFormik({
         initialValues: {
@@ -32,7 +34,6 @@ function SignIn() {
 
     return (
         <div className='content'>
-            <Nav />
 
             <div className='sign'>
                 <FormikProvider value={formik}>

@@ -1,12 +1,8 @@
 import React from 'react';
 
-import { Nav } from 'Components';
-
 function Home() {
     return (
         <div className='home content'>
-            <Nav />
-
             <div className='main_content'>
                 <h1>P E R N сайт</h1>
 

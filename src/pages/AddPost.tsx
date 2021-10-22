@@ -3,20 +3,22 @@ import { useHistory } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { Nav } from 'Components';
 import { API } from 'Api';
 import socket from 'Api/socket';
 import { useSelector } from 'react-redux';
 
+import {RootState} from 'ReduxStore/userReducer';
+
 function AddPost() {
 
-    const user = useSelector((state) => state.userReducer.user);
+    const user = useSelector((state: RootState) => state.userReducer.user);
     const history = useHistory();
 
     const formik = useFormik({
         initialValues: {
             title: '',
             text: '',
+            author: user?.login,
         },
         validationSchema: Yup.object({
             title: Yup.string()
@@ -30,7 +32,7 @@ function AddPost() {
         }),
         onSubmit: (values) => {
             //console.log('values', JSON.stringify(values, null, 2));
-            values.author = user?.login;
+            //values.author = user?.login;
             API.addPost(JSON.stringify(values))
                 .then((response) => {
                     if (response.status === 200) {
@@ -39,14 +41,13 @@ function AddPost() {
                     }
                 })
                 .catch((error) => {
-                    throw new Error('Что-то пошло не так: ', error.message );
+                    throw new Error('Что-то пошло не так: ', error?.message );
                 });
         },
     });
 
     return (
         <div className='content'>
-            <Nav />
 
             <FormikProvider value={formik}>
                 <Form>

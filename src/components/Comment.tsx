@@ -3,17 +3,18 @@ import { useParams } from 'react-router-dom';
 
 import { API } from 'Api';
 import { CommentAdd } from 'Components';
+import { PropsCommentType, MessageType, IdParams } from 'Types/ForumTypes';
+import { AddMessageValueType } from 'Types/ApiForumTypes';
 
-function Comment(props) {
+function Comment(props: PropsCommentType) {
     const { message } = props;
-    const [answers, setAnswers] = React.useState([]);
-    const [viewForn, setViewForn] = React.useState(false);
-    const { id } = useParams();
+    const [answers, setAnswers] = React.useState<MessageType[]>([]);
+    const [viewForn, setViewForn] = React.useState<boolean>(false);
+    const { id } = useParams<IdParams>();
 
     const handleAddMessagesToMessages = React.useCallback(
-        (value) => {
-            value.messageId = message.id;
-            console.log(id, 'value', value);
+        (value: AddMessageValueType) => {
+            value.messageId = message?.id;
             API.addMessageToMessage(id, JSON.stringify(value))
                 .then((response) => {
                     setAnswers([...answers, response.data]);
