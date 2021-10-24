@@ -1,5 +1,5 @@
 import { RouteComponentProps } from 'react-router-dom';
-import { TypeLogin, TypeRegistration } from 'Type/ApiAuthTypes';
+import { TypeLogin, TypeRegistration } from 'Types/ApiAuthTypes';
 
 export type TypeUser = {
     email: string,

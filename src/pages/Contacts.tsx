@@ -2,10 +2,10 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { RootState } from 'ReduxStore/userReducer';
+import { RootStateType } from 'Types/ReduxTypes';
 
 function Contacts() {
-    const user = useSelector((state: RootState) => state.userReducer.user);
+    const user = useSelector((state: RootStateType) => state.userReducer.user);
 
     return (
         <div className='content'>

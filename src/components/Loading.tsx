@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import {RootState} from 'ReduxStore/userReducer';
+import { RootStateType } from 'Types/ReduxTypes';
 
 function Loading() {
-    const isLoading = useSelector((state: RootState) => state.userReducer.isLoading);
+    const isLoading = useSelector(
+        (state: RootStateType) => state.userReducer.isLoading
+    );
 
     return <>{isLoading && <div>Загрузка...</div>}</>;
 }

@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchLogout } from '../redux/store/userReducer';
+import { fetchLogout } from 'ReduxStore/userReducer';
+
+import { RootStateType } from 'Types/ReduxTypes';
 
 function Home() {
-    const user = useSelector((state) => state.userReducer.user);
+    const user = useSelector((state: RootStateType) => state.userReducer.user);
     const dispatch = useDispatch();
 
     const handleExit = () => {

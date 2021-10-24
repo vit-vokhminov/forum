@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { PropsTopicType } from 'Types/ForumTypes';
-import { RootState } from 'ReduxStore/userReducer';
+import { RootStateType } from 'Types/ReduxTypes';
 
-function Topic(props : PropsTopicType) {
-    const user = useSelector((state: RootState) => state.userReducer.user);
+function Topic(props: PropsTopicType) {
+    const user = useSelector((state: RootStateType) => state.userReducer.user);
     const { post, handleDelete } = props;
 
     return (

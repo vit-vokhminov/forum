@@ -3,12 +3,11 @@ import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Loading } from 'Components';
 
-import { RootState } from 'ReduxStore/userReducer';
+import { RootStateType } from 'Types/ReduxTypes';
 
 function PrivateRoute({ component: Component, ...rest }) {
-
     const { userAuth, isLoading } = useSelector(
-        (state: RootState) => state.userReducer
+        (state: RootStateType) => state.userReducer
     );
 
     return (

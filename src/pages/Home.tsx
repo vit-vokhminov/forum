@@ -1,11 +1,14 @@
 import React from 'react';
+import Logo from '_/logo.jpg';
 
 function Home() {
     return (
         <div className='home content'>
             <div className='main_content'>
-                <h1>P E R N сайт</h1>
-
+                {/* <h1>P E R N сайт</h1> */}
+                <div className='img_home'>
+                    <img src={Logo} alt="" />
+                </div>
                 <div className='technologies'>
                     <div className='technologies_left'>
                         <h2>Frontend:</h2>

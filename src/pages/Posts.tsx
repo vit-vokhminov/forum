@@ -6,10 +6,10 @@ import { API } from 'Api';
 import socket from 'Api/socket';
 
 import { PostType } from 'Types/ForumTypes';
-import { RootState } from 'ReduxStore/userReducer';
+import { RootStateType } from 'Types/ReduxTypes';
 
 function Posts() {
-    const user = useSelector((state: RootState) => state.userReducer.user);
+    const user = useSelector((state: RootStateType) => state.userReducer.user);
     const [posts, setPosts] = React.useState<PostType[] | null>(null);
 
     const handleGetPosts = React.useCallback(() => {
@@ -52,7 +52,6 @@ function Posts() {
 
     return (
         <div className='content'>
-
             <h1>Темы:</h1>
             <ul>
                 {!!posts &&

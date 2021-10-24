@@ -1,4 +1,4 @@
-import type { TypeState, TypeUser, ActionType } from 'Types';
+import type { TypeState, TypeUser, ActionType } from 'Types/ReduxUserReducerTypes';
 
 const defaultState: TypeState = {
     user: null,

@@ -2,16 +2,15 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
+import { useSelector } from 'react-redux';
 
 import { API } from 'Api';
 import socket from 'Api/socket';
-import { useSelector } from 'react-redux';
 
-import {RootState} from 'ReduxStore/userReducer';
+import { RootStateType } from 'Types/ReduxTypes';
 
 function AddPost() {
-
-    const user = useSelector((state: RootState) => state.userReducer.user);
+    const user = useSelector((state: RootStateType) => state.userReducer.user);
     const history = useHistory();
 
     const formik = useFormik({
@@ -37,18 +36,17 @@ function AddPost() {
                 .then((response) => {
                     if (response.status === 200) {
                         socket.emit('ADD_POST');
-                        history.push("/posts");
+                        history.push('/posts');
                     }
                 })
                 .catch((error) => {
-                    throw new Error('Что-то пошло не так: ', error?.message );
+                    throw new Error('Что-то пошло не так: ', error?.message);
                 });
         },
     });
 
     return (
         <div className='content'>
-
             <FormikProvider value={formik}>
                 <Form>
                     <div className='form-info'>

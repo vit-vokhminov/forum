@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, useHistory} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 
-import { fetchRegistration } from '../redux/store/userReducer';
+import { fetchRegistration } from 'ReduxStore/userReducer';
 import { Loading, ServerMessage } from 'Components';
 
 import { RouteComponentProps } from 'react-router-dom';
@@ -48,7 +48,6 @@ function SignUp() {
 
     return (
         <div className='content'>
-
             <div className='sign'>
                 <FormikProvider value={formik}>
                     <Form>

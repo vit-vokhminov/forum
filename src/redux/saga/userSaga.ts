@@ -8,13 +8,17 @@ import {
     setLoading,
     setServerMessage,
     CHECK_AUTH,
-} from '../store/userReducer';
+} from 'ReduxStore/userReducer';
 import { API_AUTH } from 'Api/auth';
 
-import { ActionType, SignInPayloadType, SignUpPayloadType } from 'Type/reduxUserReducerTypes';
+import {
+    ActionType,
+    SignInPayloadType,
+    SignUpPayloadType,
+} from 'Types/ReduxUserReducerTypes';
 
 function* fetchLogin(props: ActionType<SignInPayloadType>) {
-    const {values, history} = props.payload;
+    const { values, history } = props.payload;
     yield put(setLoading(true));
     try {
         const response = yield call(API_AUTH.login, values);
@@ -23,7 +27,7 @@ function* fetchLogin(props: ActionType<SignInPayloadType>) {
             yield put(setUser(response.data.user));
             yield put(setUserAuth(true));
             yield put(setLoading(false));
-            yield history.push("/");
+            yield history.push('/');
         }
     } catch (e) {
         yield put(setLoading(false));
@@ -32,7 +36,7 @@ function* fetchLogin(props: ActionType<SignInPayloadType>) {
 }
 
 function* fetchRegistration(props: ActionType<SignUpPayloadType>) {
-    const {values, history} = props.payload;
+    const { values, history } = props.payload;
     yield put(setLoading(true));
     try {
         const response = yield call(API_AUTH.registration, values);
@@ -54,7 +58,7 @@ function* fetchRegistration(props: ActionType<SignUpPayloadType>) {
                     resolve();
                 }, 3000)
             );
-            yield history.location.pathname === "/signup" && history.push("/");
+            yield history.location.pathname === '/signup' && history.push('/');
         }
     } catch (e) {
         yield put(setLoading(false));

@@ -2,11 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
-
-import { API } from 'Api';
 import { useParams } from 'react-router-dom';
 
-import { PostType, IdParams } from 'Type/ForumTypes';
+import { API } from 'Api';
+
+import { PostType, IdParams } from 'Types/ForumTypes';
 import { RouteComponentProps } from 'react-router-dom';
 
 function AddPost() {

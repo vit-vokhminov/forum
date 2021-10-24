@@ -19,6 +19,15 @@ select:-webkit-autofill:focus {
     transition: background-color 5000s ease-in-out 0s;
 }
 
+.img_home {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.img_home img {
+    max-width: 350px;
+    display: inline-block;
+}
+
 body {
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
@@ -72,7 +81,8 @@ a {
     color: #fff;
 }
 
-.main_content {}
+.main_content {
+}
 .main_content h1 {
     text-align: center;
     margin-bottom: 20px;
@@ -94,7 +104,8 @@ a {
     -ms-flex-line-pack: stretch;
     align-content: stretch;
 }
-.technologies_left, .technologies_right {
+.technologies_left,
+.technologies_right {
     width: 50%;
     padding: 10px 15px;
     border: 1px solid #fff;
@@ -454,9 +465,7 @@ button.btn-delete i {
     background: none;
 }
 
-
 .message.post {
-
 }
 
 .person {

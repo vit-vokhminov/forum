@@ -4,20 +4,20 @@ import * as Yup from 'yup';
 
 import { useSelector } from 'react-redux';
 
-import {RootState} from 'ReduxStore/userReducer';
+import { RootStateType } from 'Types/ReduxTypes';
 
 type FormValueType = {
-    author: string,
-    text: string,
+    author: string;
+    text: string;
 };
 type HandleAddMessagesType = {
-    handleAddMessages: (arg: FormValueType) => void,
+    handleAddMessages: (arg: FormValueType) => void;
 };
 
 function CommentAdd(props: HandleAddMessagesType) {
     const { handleAddMessages } = props;
 
-    const user = useSelector((state: RootState) => state.userReducer.user);
+    const user = useSelector((state: RootStateType) => state.userReducer.user);
 
     const formik = useFormik({
         initialValues: {

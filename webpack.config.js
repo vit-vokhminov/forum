@@ -9,6 +9,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // минифицирует js
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -96,7 +97,10 @@ const plugins = () => {
         new MiniCssExtractPlugin({
             filename: filename('css'),
         }),
-        new Dotenv()
+        new Dotenv(),
+        new WebpackManifestPlugin ({
+            fileName: "manifest.json",
+        }),
     ];
 
     return base;
@@ -128,6 +132,7 @@ module.exports = {
         mainFields: ['browser', 'module', 'main'],
         // переменные для указания путей
         alias: {
+            _: path.resolve(__dirname, 'src'),
             Api: path.resolve(__dirname, 'src/api'),
             Components: path.resolve(__dirname, 'src/components'),
             Pages: path.resolve(__dirname, 'src/pages'),

@@ -1,11 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setServerMessage } from '../redux/store/userReducer';
+import { setServerMessage } from 'ReduxStore/userReducer';
+
+import { RootStateType } from 'Types/ReduxTypes';
 
 function ServerMessage() {
     const serverMessage = useSelector(
-        (state) => state.userReducer.serverMessage
+        (state: RootStateType) => state.userReducer.serverMessage
     );
     const dispatch = useDispatch();
 
