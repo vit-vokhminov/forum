@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>package.json</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "";
+    var thisFile = "package.json";
+    var defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>package.json</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="json">{
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"forum"</span>,
+    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+    <span class="hljs-attr">"description"</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">"private"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"scripts"</span>: {
+        <span class="hljs-attr">"build"</span>: <span class="hljs-string">"cross-env NODE_ENV=production webpack --mode production"</span>,
+        <span class="hljs-attr">"watch"</span>: <span class="hljs-string">"cross-env NODE_ENV=development webpack --mode development --watch"</span>,
+        <span class="hljs-attr">"start"</span>: <span class="hljs-string">"cross-env NODE_ENV=development webpack serve --mode development --open"</span>,
+        <span class="hljs-attr">"server"</span>: <span class="hljs-string">"nodemon ./server/server.js"</span>,
+        <span class="hljs-attr">"client"</span>: <span class="hljs-string">"npm run start"</span>,
+        <span class="hljs-attr">"dev"</span>: <span class="hljs-string">"concurrently \"npm run server\" \"npm run client\""</span>
+    },
+    <span class="hljs-attr">"author"</span>: <span class="hljs-string">"vit-vokhminov"</span>,
+    <span class="hljs-attr">"license"</span>: <span class="hljs-string">"ISC"</span>,
+    <span class="hljs-attr">"devDependencies"</span>: {
+        <span class="hljs-attr">"@babel/core"</span>: <span class="hljs-string">"^7.15.8"</span>,
+        <span class="hljs-attr">"@babel/plugin-proposal-class-properties"</span>: <span class="hljs-string">"^7.14.5"</span>,
+        <span class="hljs-attr">"@babel/plugin-syntax-dynamic-import"</span>: <span class="hljs-string">"^7.8.3"</span>,
+        <span class="hljs-attr">"@babel/preset-env"</span>: <span class="hljs-string">"^7.15.8"</span>,
+        <span class="hljs-attr">"@babel/preset-react"</span>: <span class="hljs-string">"^7.14.5"</span>,
+        <span class="hljs-attr">"@babel/preset-typescript"</span>: <span class="hljs-string">"^7.15.0"</span>,
+        <span class="hljs-attr">"@babel/register"</span>: <span class="hljs-string">"^7.15.3"</span>,
+        <span class="hljs-attr">"assets-webpack-plugin"</span>: <span class="hljs-string">"^7.1.1"</span>,
+        <span class="hljs-attr">"babel-eslint"</span>: <span class="hljs-string">"^10.1.0"</span>,
+        <span class="hljs-attr">"babel-loader"</span>: <span class="hljs-string">"^8.2.2"</span>,
+        <span class="hljs-attr">"clean-webpack-plugin"</span>: <span class="hljs-string">"^4.0.0"</span>,
+        <span class="hljs-attr">"concurrently"</span>: <span class="hljs-string">"^6.2.1"</span>,
+        <span class="hljs-attr">"copy-webpack-plugin"</span>: <span class="hljs-string">"^9.0.1"</span>,
+        <span class="hljs-attr">"css-loader"</span>: <span class="hljs-string">"^6.4.0"</span>,
+        <span class="hljs-attr">"dotenv-webpack"</span>: <span class="hljs-string">"^7.0.3"</span>,
+        <span class="hljs-attr">"eslint"</span>: <span class="hljs-string">"^8.0.1"</span>,
+        <span class="hljs-attr">"eslint-config-prettier"</span>: <span class="hljs-string">"^8.3.0"</span>,
+        <span class="hljs-attr">"eslint-plugin-prettier"</span>: <span class="hljs-string">"^4.0.0"</span>,
+        <span class="hljs-attr">"eslint-plugin-react"</span>: <span class="hljs-string">"^7.26.1"</span>,
+        <span class="hljs-attr">"file-loader"</span>: <span class="hljs-string">"^6.2.0"</span>,
+        <span class="hljs-attr">"html-webpack-plugin"</span>: <span class="hljs-string">"^5.3.2"</span>,
+        <span class="hljs-attr">"mini-css-extract-plugin"</span>: <span class="hljs-string">"^2.4.2"</span>,
+        <span class="hljs-attr">"nodemon"</span>: <span class="hljs-string">"^2.0.12"</span>,
+        <span class="hljs-attr">"optimize-css-assets-webpack-plugin"</span>: <span class="hljs-string">"^6.0.1"</span>,
+        <span class="hljs-attr">"prettier"</span>: <span class="hljs-string">"2.4.1"</span>,
+        <span class="hljs-attr">"redux-mock-store"</span>: <span class="hljs-string">"^1.5.4"</span>,
+        <span class="hljs-attr">"style-loader"</span>: <span class="hljs-string">"^3.3.0"</span>,
+        <span class="hljs-attr">"terser-webpack-plugin"</span>: <span class="hljs-string">"^5.2.4"</span>,
+        <span class="hljs-attr">"webpack"</span>: <span class="hljs-string">"^5.58.2"</span>,
+        <span class="hljs-attr">"webpack-cli"</span>: <span class="hljs-string">"^4.9.0"</span>,
+        <span class="hljs-attr">"webpack-dev-server"</span>: <span class="hljs-string">"^4.3.1"</span>,
+        <span class="hljs-attr">"webpack-manifest-plugin"</span>: <span class="hljs-string">"^4.0.2"</span>,
+        <span class="hljs-attr">"webpack-nano"</span>: <span class="hljs-string">"^1.1.1"</span>
+    },
+    <span class="hljs-attr">"dependencies"</span>: {
+        <span class="hljs-attr">"@babel/polyfill"</span>: <span class="hljs-string">"^7.12.1"</span>,
+        <span class="hljs-attr">"@testing-library/jest-dom"</span>: <span class="hljs-string">"^5.14.1"</span>,
+        <span class="hljs-attr">"@testing-library/react"</span>: <span class="hljs-string">"^11.2.7"</span>,
+        <span class="hljs-attr">"@testing-library/user-event"</span>: <span class="hljs-string">"^12.8.3"</span>,
+        <span class="hljs-attr">"@types/axios"</span>: <span class="hljs-string">"^0.14.0"</span>,
+        <span class="hljs-attr">"@types/node"</span>: <span class="hljs-string">"^12.20.13"</span>,
+        <span class="hljs-attr">"@types/react"</span>: <span class="hljs-string">"^17.0.8"</span>,
+        <span class="hljs-attr">"@types/react-dom"</span>: <span class="hljs-string">"^17.0.5"</span>,
+        <span class="hljs-attr">"@types/react-router-dom"</span>: <span class="hljs-string">"^5.3.1"</span>,
+        <span class="hljs-attr">"axios"</span>: <span class="hljs-string">"^0.21.4"</span>,
+        <span class="hljs-attr">"bcryptjs"</span>: <span class="hljs-string">"^2.4.3"</span>,
+        <span class="hljs-attr">"classnames"</span>: <span class="hljs-string">"^2.3.1"</span>,
+        <span class="hljs-attr">"cookie-parser"</span>: <span class="hljs-string">"^1.4.5"</span>,
+        <span class="hljs-attr">"cors"</span>: <span class="hljs-string">"^2.8.5"</span>,
+        <span class="hljs-attr">"dotenv"</span>: <span class="hljs-string">"^10.0.0"</span>,
+        <span class="hljs-attr">"express"</span>: <span class="hljs-string">"^4.17.1"</span>,
+        <span class="hljs-attr">"express-validator"</span>: <span class="hljs-string">"^6.12.2"</span>,
+        <span class="hljs-attr">"formik"</span>: <span class="hljs-string">"^2.2.9"</span>,
+        <span class="hljs-attr">"history"</span>: <span class="hljs-string">"^5.0.1"</span>,
+        <span class="hljs-attr">"jsonwebtoken"</span>: <span class="hljs-string">"^8.5.1"</span>,
+        <span class="hljs-attr">"nodemailer"</span>: <span class="hljs-string">"^6.6.5"</span>,
+        <span class="hljs-attr">"pg"</span>: <span class="hljs-string">"^8.7.1"</span>,
+        <span class="hljs-attr">"pg-hstore"</span>: <span class="hljs-string">"^2.3.4"</span>,
+        <span class="hljs-attr">"react"</span>: <span class="hljs-string">"^17.0.2"</span>,
+        <span class="hljs-attr">"react-dom"</span>: <span class="hljs-string">"^17.0.2"</span>,
+        <span class="hljs-attr">"react-redux"</span>: <span class="hljs-string">"^7.2.5"</span>,
+        <span class="hljs-attr">"react-router"</span>: <span class="hljs-string">"^5.2.1"</span>,
+        <span class="hljs-attr">"react-router-dom"</span>: <span class="hljs-string">"^5.3.0"</span>,
+        <span class="hljs-attr">"react-scripts"</span>: <span class="hljs-string">"4.0.3"</span>,
+        <span class="hljs-attr">"redux"</span>: <span class="hljs-string">"^4.1.1"</span>,
+        <span class="hljs-attr">"redux-saga"</span>: <span class="hljs-string">"^1.1.3"</span>,
+        <span class="hljs-attr">"sequelize"</span>: <span class="hljs-string">"^6.6.5"</span>,
+        <span class="hljs-attr">"socket.io"</span>: <span class="hljs-string">"^4.2.0"</span>,
+        <span class="hljs-attr">"socket.io-client"</span>: <span class="hljs-string">"^4.2.0"</span>,
+        <span class="hljs-attr">"uuid"</span>: <span class="hljs-string">"^8.3.2"</span>,
+        <span class="hljs-attr">"web-vitals"</span>: <span class="hljs-string">"^1.1.2"</span>,
+        <span class="hljs-attr">"yup"</span>: <span class="hljs-string">"^0.32.9"</span>
+    },
+    <span class="hljs-attr">"engines"</span>: {
+        <span class="hljs-attr">"node"</span>: <span class="hljs-string">"13.8.0"</span>
+    },
+    <span class="hljs-attr">"proxy"</span>: <span class="hljs-string">"http://localhost:5000"</span>,
+    <span class="hljs-attr">"browserslist"</span>: {
+        <span class="hljs-attr">"production"</span>: [
+            <span class="hljs-string">"&gt;0.2%"</span>,
+            <span class="hljs-string">"not dead"</span>,
+            <span class="hljs-string">"not op_mini all"</span>
+        ],
+        <span class="hljs-attr">"development"</span>: [
+            <span class="hljs-string">"last 1 chrome version"</span>,
+            <span class="hljs-string">"last 1 firefox version"</span>,
+            <span class="hljs-string">"last 1 safari version"</span>
+        ]
+    }
+}
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

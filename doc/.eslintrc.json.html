@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>.eslintrc.json</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "";
+    var thisFile = ".eslintrc.json";
+    var defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>.eslintrc.json</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="json">{
+    <span class="hljs-attr">"env"</span>: { <span class="hljs-comment">// где будет исполняться наш код</span>
+        <span class="hljs-attr">"browser"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"es2021"</span>: <span class="hljs-literal">true</span>
+    },
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>Пресет с настройками. prettier должен быть последним.
+Он удаляет некоторые правила eslint из-за которых могут возникать конфликты.</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="json">    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "prettier"
+    ],
+    "parser": "babel-eslint", // Парсер для обработки jsx кода
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 11, // версия стандарта JavaScript. Последний 12 (2021).
+        "sourceType": "module" // Позволяет использовать import/export
+    },
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>Здесь мы подключаем используемые плагины.</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="json">    "plugins": [
+        "react",
+        "prettier"
+    ],
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>Правила для отслеживания линтером. Если пресеты покрывают не все ситуации,
+вы можете прописать нужные правила вручную.</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="json">    "rules": {
+        "prettier/prettier": "error",  // Обязательно!! Подсвечивает ошибки из Prettier.
+        "react/prop-types": 0 // Отключаем правило проверки передаваемых типов.
+    }
+}
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>
