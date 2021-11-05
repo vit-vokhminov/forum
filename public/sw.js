@@ -4,11 +4,10 @@ const staticCacheName = 's-app-v1';
 self.addEventListener('install', async (event) => {
     const cache = await caches.open(staticCacheName);
 
-    const filesCache = await fetch('/manifest.json')
+    const filesCache = await fetch(`/files.json`)
         .then((response) => response.json())
         .then((data) => Object.values(data));
 
-        // ! Uncaught (in promise) TypeError: Failed to execute 'addAll' on 'Cache': Request failed
     await cache.addAll(filesCache);
 });
 

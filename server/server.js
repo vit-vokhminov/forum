@@ -31,8 +31,6 @@ app.use('/api', router);
 app.use(errorMiddleware);
 
 io.on('connection', (socket) => {
-    // console.log('К СОКЕТАМ ПОДКЛЮЧИЛИСЬ!', socket.id);
-
     socket.on('NEW_MESSAGE', () => {
         socket.broadcast.emit('NEW_MESSAGE');
     });

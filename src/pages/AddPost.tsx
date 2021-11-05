@@ -40,7 +40,8 @@ function AddPost() {
                     }
                 })
                 .catch((error) => {
-                    throw new Error('Что-то пошло не так: ', error?.message);
+                    // TODO TypeScript
+                    //throw new Error('Что-то пошло не так: ', error?.message);
                 });
         },
     });

@@ -107,6 +107,7 @@ a {
 .technologies_left,
 .technologies_right {
     width: 50%;
+    min-width: 315px;
     padding: 10px 15px;
     border: 1px solid #fff;
 }

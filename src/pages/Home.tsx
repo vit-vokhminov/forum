@@ -17,9 +17,9 @@ function Home() {
                             <li>ReactJS</li>
                             <li>Redux, Redux Saga</li>
                             <li>ESLint, Prettier</li>
-                            <li>styled-components / CSS Modules / PostCSS</li>
                             <li>Webpack</li>
-                            <li>Jest + Enzyme, React Testing Library</li>
+                            <li>Jest + Enzyme</li>
+                            <li>Service Worker</li>
                         </ul>
                     </div>
                     <div className='technologies_right'>
@@ -29,7 +29,6 @@ function Home() {
                             <li>PostgreSQL / Sequalize</li>
                             <li>JWT</li>
                             <li>Socket.io</li>
-                            <li>Docker, CI/CD</li>
                         </ul>
                     </div>
                 </div>

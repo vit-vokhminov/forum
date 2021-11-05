@@ -7,7 +7,6 @@ export { default as AddPost } from "./AddPost";
 export { default as EditPost } from "./EditPost";
 export { default as Contacts } from "./Contacts";
 
-export { default as PrivateRoute } from "./PrivateRoute";
 export { default as NotFound } from "./NotFound";
 
 

@@ -99,7 +99,7 @@ const plugins = () => {
         }),
         new Dotenv(),
         new WebpackManifestPlugin ({
-            fileName: "manifest.json",
+            fileName: "files.json",
         }),
     ];
 

@@ -17,12 +17,8 @@
         "jsx": "react-jsx",
         "baseUrl": ".",
         "paths": {
-            "Api": ["src/api"],
-            "Components": ["src/components"],
-            "Pages": ["src/pages"],
-            "ReduxStore": ["src/redux/store"],
-            "Types": ["src/types"]
-        }
+            "*": ["src/*"],
+        },
     },
     "include": ["src", "server"]
 }

@@ -1,3 +1,4 @@
+import {AxiosError} from 'axios';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import {
     LOGIN,
@@ -21,6 +22,7 @@ function* fetchLogin(props: ActionType<SignInPayloadType>) {
     const { values, history } = props.payload;
     yield put(setLoading(true));
     try {
+        // TODO typescript
         const response = yield call(API_AUTH.login, values);
         if (response.status === 200) {
             yield localStorage.setItem('token', response.data.accessToken);
@@ -29,8 +31,9 @@ function* fetchLogin(props: ActionType<SignInPayloadType>) {
             yield put(setLoading(false));
             yield history.push('/');
         }
-    } catch (e) {
+    } catch (e: AxiosError<any | unknown>) {
         yield put(setLoading(false));
+        // TODO typescript e
         yield put(setServerMessage(e.response?.data?.message));
     }
 }
@@ -52,7 +55,7 @@ function* fetchRegistration(props: ActionType<SignUpPayloadType>) {
                 )
             );
 
-            yield new Promise((resolve) =>
+            yield new Promise<void>((resolve) =>
                 setTimeout(() => {
                     put(setServerMessage(''));
                     resolve();

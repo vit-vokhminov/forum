@@ -4,7 +4,8 @@ import {
     AddPostResponseType,
     EditPostType,
     AddMessageValueType,
-} from 'Types/ApiForumTypes';
+} from 'types/ApiForumTypes';
+import { PostType } from 'Types/ForumTypes';
 
 const instanceAPI = axios.create({
     baseURL: `${process.env.API_URL}`,
@@ -20,18 +21,18 @@ const instanceAPI = axios.create({
 
 export const API = {
     // Получить все посты
-    async getPosts() {
+    async getPosts(): Promise<Array<PostType>> { //!: Promise<[PostType]>
         return await instanceAPI.get('/api/posts');
     },
 
     // Получить пост по id
-    async getPost(id: string) {
+    async getPost(id: string): Promise<PostType> {
         return await instanceAPI.get(`/api/post/${id}`);
     },
 
     // Создать новый пост
-    async addPost(values: AddPostType): Promise<AddPostResponseType> {
-        return await instanceAPI.post('/api/post/', values);
+    async addPost(values: AddPostType){
+        return await instanceAPI.post<AddPostResponseType>('/api/post/', values);
     },
 
     // Изменить пост по id
