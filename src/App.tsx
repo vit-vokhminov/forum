@@ -11,7 +11,7 @@ import {
     AddPost,
     EditPost,
     Contacts,
-    NotFound,
+    NotFound
 } from 'Pages/';
 import { Nav, PrivateRoute } from 'Components';
 import { fetchCheckAuth } from 'ReduxStore/userReducer';
